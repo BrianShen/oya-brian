@@ -1,48 +1,26 @@
 package com.springapp.mvc.entity;
 
 public class User {
-    private Integer id;
-
-    private String name;
-
-    private Integer age;
-
-    private String nickname;
+    private Integer userid;
 
     private String password;
 
-    private String note;
+    private String nickname;
 
-    public Integer getId() {
-        return id;
+    private Integer userImgId;
+
+    private String addTs;
+
+    private Integer infoId;
+
+    private String lastLoginTs;
+
+    public Integer getUserid() {
+        return userid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname == null ? null : nickname.trim();
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 
     public String getPassword() {
@@ -53,23 +31,56 @@ public class User {
         this.password = password == null ? null : password.trim();
     }
 
-    public String getNote() {
-        return note;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setNote(String note) {
-        this.note = note == null ? null : note.trim();
+    public void setNickname(String nickname) {
+        this.nickname = nickname == null ? null : nickname.trim();
+    }
+
+    public Integer getUserImgId() {
+        return userImgId;
+    }
+
+    public void setUserImgId(Integer userImgId) {
+        this.userImgId = userImgId;
+    }
+
+    public String getAddTs() {
+        return addTs;
+    }
+
+    public void setAddTs(String addTs) {
+        this.addTs = addTs == null ? null : addTs.trim();
+    }
+
+    public Integer getInfoId() {
+        return infoId;
+    }
+
+    public void setInfoId(Integer infoId) {
+        this.infoId = infoId;
+    }
+
+    public String getLastLoginTs() {
+        return lastLoginTs;
+    }
+
+    public void setLastLoginTs(String lastLoginTs) {
+        this.lastLoginTs = lastLoginTs == null ? null : lastLoginTs.trim();
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", nickname='" + nickname + '\'' +
+                "userid=" + userid +
                 ", password='" + password + '\'' +
-                ", note='" + note + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", userImgId=" + userImgId +
+                ", addTs='" + addTs + '\'' +
+                ", infoId=" + infoId +
+                ", lastLoginTs='" + lastLoginTs + '\'' +
                 '}';
     }
 }

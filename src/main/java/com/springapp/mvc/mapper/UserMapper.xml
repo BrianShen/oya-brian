@@ -1,21 +1,117 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.springapp.mvc.mapper.UserMapper">
-  <resultMap id="BaseResultMap" type="com.springapp.mvc.entity.User">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="age" jdbcType="INTEGER" property="age" />
-    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="note" jdbcType="VARCHAR" property="note" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springapp.mvc.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.springapp.mvc.entity.User" >
+    <id column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="user_img_id" property="userImgId" jdbcType="INTEGER" />
+    <result column="add_ts" property="addTs" jdbcType="VARCHAR" />
+    <result column="info_id" property="infoId" jdbcType="INTEGER" />
+    <result column="last_login_ts" property="lastLoginTs" jdbcType="VARCHAR" />
   </resultMap>
-  <sql id="Base_Column_List">
-    id, name, age, nickname, password, note
+  <sql id="Base_Column_List" >
+    userid, password, nickname, user_img_id, add_ts, info_id, last_login_ts
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from user
-    where id = #{id,jdbcType=INTEGER}
+    where userid = #{userid,jdbcType=INTEGER}
   </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user
+    where userid = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.springapp.mvc.entity.User" >
+    insert into user (userid, password, nickname, 
+      user_img_id, add_ts, info_id, 
+      last_login_ts)
+    values (#{userid,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{userImgId,jdbcType=INTEGER}, #{addTs,jdbcType=VARCHAR}, #{infoId,jdbcType=INTEGER}, 
+      #{lastLoginTs,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.springapp.mvc.entity.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="nickname != null" >
+        nickname,
+      </if>
+      <if test="userImgId != null" >
+        user_img_id,
+      </if>
+      <if test="addTs != null" >
+        add_ts,
+      </if>
+      <if test="infoId != null" >
+        info_id,
+      </if>
+      <if test="lastLoginTs != null" >
+        last_login_ts,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userImgId != null" >
+        #{userImgId,jdbcType=INTEGER},
+      </if>
+      <if test="addTs != null" >
+        #{addTs,jdbcType=VARCHAR},
+      </if>
+      <if test="infoId != null" >
+        #{infoId,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginTs != null" >
+        #{lastLoginTs,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.springapp.mvc.entity.User" >
+    update user
+    <set >
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userImgId != null" >
+        user_img_id = #{userImgId,jdbcType=INTEGER},
+      </if>
+      <if test="addTs != null" >
+        add_ts = #{addTs,jdbcType=VARCHAR},
+      </if>
+      <if test="infoId != null" >
+        info_id = #{infoId,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginTs != null" >
+        last_login_ts = #{lastLoginTs,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springapp.mvc.entity.User" >
+    update user
+    set password = #{password,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      user_img_id = #{userImgId,jdbcType=INTEGER},
+      add_ts = #{addTs,jdbcType=VARCHAR},
+      info_id = #{infoId,jdbcType=INTEGER},
+      last_login_ts = #{lastLoginTs,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
 </mapper>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.springapp.mvc.mapper.LogMapper" >
+  <resultMap id="BaseResultMap" type="com.springapp.mvc.entity.Log" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="writer_id" property="writerId" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="add_ts" property="addTs" jdbcType="VARCHAR" />
+    <result column="last_update_ts" property="lastUpdateTs" jdbcType="VARCHAR" />
+    <result column="read_cnt" property="readCnt" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.springapp.mvc.entity.Log" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, writer_id, title, add_ts, last_update_ts, read_cnt
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.springapp.mvc.entity.Log" >
+    insert into log (id, writer_id, title, 
+      add_ts, last_update_ts, read_cnt, 
+      content)
+    values (#{id,jdbcType=INTEGER}, #{writerId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{addTs,jdbcType=VARCHAR}, #{lastUpdateTs,jdbcType=VARCHAR}, #{readCnt,jdbcType=INTEGER}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.springapp.mvc.entity.Log" >
+    insert into log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="writerId != null" >
+        writer_id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="addTs != null" >
+        add_ts,
+      </if>
+      <if test="lastUpdateTs != null" >
+        last_update_ts,
+      </if>
+      <if test="readCnt != null" >
+        read_cnt,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="writerId != null" >
+        #{writerId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="addTs != null" >
+        #{addTs,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTs != null" >
+        #{lastUpdateTs,jdbcType=VARCHAR},
+      </if>
+      <if test="readCnt != null" >
+        #{readCnt,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.springapp.mvc.entity.Log" >
+    update log
+    <set >
+      <if test="writerId != null" >
+        writer_id = #{writerId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="addTs != null" >
+        add_ts = #{addTs,jdbcType=VARCHAR},
+      </if>
+      <if test="lastUpdateTs != null" >
+        last_update_ts = #{lastUpdateTs,jdbcType=VARCHAR},
+      </if>
+      <if test="readCnt != null" >
+        read_cnt = #{readCnt,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.springapp.mvc.entity.Log" >
+    update log
+    set writer_id = #{writerId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      add_ts = #{addTs,jdbcType=VARCHAR},
+      last_update_ts = #{lastUpdateTs,jdbcType=VARCHAR},
+      read_cnt = #{readCnt,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springapp.mvc.entity.Log" >
+    update log
+    set writer_id = #{writerId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      add_ts = #{addTs,jdbcType=VARCHAR},
+      last_update_ts = #{lastUpdateTs,jdbcType=VARCHAR},
+      read_cnt = #{readCnt,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
