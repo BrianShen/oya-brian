@@ -19,6 +19,8 @@
             <!--</list>-->
         <!--</property>-->
     <!--</bean>-->
+    
+    <!--数据格式转化json-->
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
         <property name="messageConverters">
             <list>
