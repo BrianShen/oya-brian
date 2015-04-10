@@ -4,6 +4,7 @@
     <title>爱秀网</title>
     <script type="text/javascript" src="/assets/js/lib/jquery-1.9.0.min.js"></script>
     <script type="text/javascript" src="/assets/js/login.js"></script>
+    <script type="text/javascript" src="/assets/js/lib/md5.js"></script>
     <link href="/assets/css/login.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
@@ -31,7 +32,7 @@
 
 
                 <div class="login_form">
-                    <form action="http://www.js-css.cn" name="loginform" accept-charset="utf-8" id="login_form"
+                    <form action="/mvc/login/info" name="loginform" accept-charset="utf-8" id="login_form"
                           class="loginForm" method="post"><input type="hidden" name="did" value="0"/>
                         <input type="hidden" name="to" value="log"/>
 
@@ -52,9 +53,9 @@
                             </div>
                         </div>
 
-                        <div style="padding-left:50px;margin-top:20px;"><input type="submit" value="登 录"
-                                                                               style="width:150px;"
-                                                                               class="button_blue"/></div>
+                        <div style="padding-left:50px;margin-top:20px;">
+                            <input type="submit" value="登 录" style="width:150px;"  class="button_blue" id="loginbt"/>
+                        </div>
                     </form>
                 </div>
 
@@ -68,7 +69,7 @@
     <div class="qlogin" id="qlogin" style="display: none; ">
 
         <div class="web_login">
-            <form name="form2" id="regUser" accept-charset="utf-8" action="http://www.js-css.cn" method="post">
+            <form name="form2" id="regUser" accept-charset="utf-8" action="/mvc/user/id/1" method="post">
                 <input type="hidden" name="to" value="reg"/>
                 <input type="hidden" name="did" value="0"/>
                 <ul class="reg_form" id="reg-ul">

@@ -59,6 +59,12 @@ var reMethod = "GET",
 
 $(document).ready(function() {
 
+	$('#loginbt').click(function() {
+		var pw = document.getElementById('p').value;
+		if(pw.length !=32) {
+			document.getElementById('p').value = hex_md5(document.getElementById('p').value);
+		}
+	});
 
 	$('#reg').click(function() {
 
